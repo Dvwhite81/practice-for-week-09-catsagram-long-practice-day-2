@@ -1,0 +1,52 @@
+.container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.btn {
+    cursor: pointer;
+    margin: 10px;
+}
+
+#button-div {
+    justify-content: space-evenly;
+}
+
+#vote-section {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#main-img {
+    margin: 20px;
+    max-width: 750px;
+}
+
+.form {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    width: 100%;
+}
+
+.input-container {
+    margin-right: 10px;
+}
+
+#new-comment-div {
+    display: flex;
+    margin: 10px;
+}
+
+#comments-made-section {
+    border: 1px solid;
+    height: 400px;
+    margin: 10px;
+    overflow: scroll;
+    padding: 5px;
+    width: 80%;
+}

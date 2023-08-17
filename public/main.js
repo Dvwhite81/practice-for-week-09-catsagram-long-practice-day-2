@@ -1,16 +1,19 @@
+import { resetScore } from "./score.js";
+import { resetComments } from "./comments.js";
+
 export const createMainContent = () => {
-    // Create h1
     const h1 = document.createElement("h1");
     h1.innerText = "Catstagram";
 
-    // Create img
     const img = document.createElement("img");
-    img.style.margin = "20px";
-    img.style.maxWidth = "750px";
+    img.id = "main-img";
+
+    const newImageBtn = createNewImageButton();
 
     const container = document.querySelector(".container");
     container.appendChild(h1);
     container.appendChild(img);
+    container.append(newImageBtn);
 
     fetchImage();
 };
@@ -24,7 +27,23 @@ const fetchImage = async () => {
         // console.log(kittenData);
         const kittenImg = document.querySelector("img");
         kittenImg.src = kittenData[0].url;
+
+        kittenImg.addEventListener("load", () => {
+            resetScore();
+            resetComments();
+        });
     } catch (e) {
         console.log("Failed to fetch image", e);
     }
+};
+
+const createNewImageButton = () => {
+    const newBtn = document.createElement("button");
+    newBtn.id = "new-image-btn";
+    newBtn.classList.add("btn");
+    newBtn.innerText = "New Image";
+
+    newBtn.addEventListener("click", fetchImage);
+
+    return newBtn;
 };
