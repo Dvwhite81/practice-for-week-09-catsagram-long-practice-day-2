@@ -12,6 +12,8 @@ export const createVoteSection = () => {
     voteSection.append(buttonDiv);
 
     container.append(voteSection);
+
+    getScoreStorage();
 };
 
 const createScoreSection = () => {
@@ -75,8 +77,22 @@ const changeScore = (event) => {
 const setNewScore = (score) => {
     const scoreSpan = document.getElementById("score-span");
     scoreSpan.innerText = score;
+
+    saveScoreStorage(score);
 };
 
 export const resetScore = () => {
     setNewScore(0);
-}
+};
+
+const saveScoreStorage = (score) => {
+    localStorage.setItem("picScore", score);
+};
+
+const getScoreStorage = () => {
+    let score = localStorage.getItem("picScore");
+
+    if (score) {
+        setNewScore(score);
+    }
+};

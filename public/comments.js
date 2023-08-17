@@ -6,6 +6,8 @@ export const createCommentSection = () => {
 
     container.append(addCommentForm);
     container.append(commentsMadeSection);
+
+    getCommentStorage();
 };
 
 export const resetComments = () => {
@@ -76,6 +78,8 @@ const addComment = (event) => {
 
     makeNewComment(newComment);
     input.value = "";
+
+    saveCommentStorage(newComment);
 };
 
 const makeNewComment = (comment) => {
@@ -99,4 +103,22 @@ const makeNewComment = (comment) => {
 
     const commentsMadeSection = document.getElementById("comments-made-section");
     commentsMadeSection.append(newCommentDiv);
+};
+
+const saveCommentStorage = (comment) => {
+    const savedComments = JSON.parse(localStorage.getItem("picComments"));
+    savedComments.push(comment);
+    localStorage.setItem("picComments", JSON.stringify(savedComments));
+};
+
+const getCommentStorage = () => {
+    const savedComments = localStorage.getItem("picComments");
+
+    if (savedComments) {
+        JSON.parse(savedComments).forEach(comment => {
+            makeNewComment(comment);
+        });
+    } else {
+        localStorage.setItem("picComments", JSON.stringify([]));
+    }
 };
